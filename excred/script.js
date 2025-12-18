@@ -49,6 +49,7 @@ function review1() {
    if (formoutput.length>0) { 
       formoutput = formoutput + "</table>";
       document.getElementById("outputformdata").innerHTML = formoutput;
+	  document.getElementById("reviewModal").showModal();
    }
 }
 
