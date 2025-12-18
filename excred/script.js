@@ -1,10 +1,10 @@
   /*
-    Program name: homework4.js
+    Program name: script.js
     Author: Hoan My Le
     Date created: 2025-11-14
-    Date last edited: 2025-12-06
+    Date last edited: 2025-12-10
     Version: 1.0
-    Description: MIS 3371 Homework 4...
+    Description: MIS 3371 Extra Credit...
 */
 
 function goToPage() 
@@ -51,54 +51,6 @@ function review1() {
       document.getElementById("outputformdata").innerHTML = formoutput;
    }
 }
-
-// Check password pattern validity
-function passwordentry() 
-    {
-    passwordoutput;
-    passwordinput = document.getElementById("password1").value;
-    console.log(passwordinput);
-    // Validate lowercase letters
-    if(passwordinput.search(/[a-z]/) < 0 ) {
-      passwordoutput = "Enter at least 1 lowercase letter";
-      error_flag = 1;
-    } else {
-      passwordoutput = "";
-    }
-    document.getElementById("pwmessage1").innerHTML = passwordoutput;
-    // Validate uppercase letters
-    if(passwordinput.search(/[A-Z]/)< 0)  {  
-      passwordoutput = "Enter at least 1 uppercase letter";
-      error_flag = 1;
-    } else {
-      passwordoutput = "";
-    }
-    document.getElementById("pwmessage2").innerHTML = passwordoutput;
-  // Validate numbers
-   if(passwordinput.search(/[0-9]/)<0 ) {   
-    passwordoutput = "Enter at least 1 number";
-    error_flag = 1;
-    } else {
-    passwordoutput = "Password contains at least 1 number";
-    }
-    document.getElementById("pwmessage3").innerHTML = passwordoutput;
-    // Validate special chars
-   if(passwordinput.search(/[!\@#\$%&*\-_\\.+\(\)]/)<0 ) {   
-    passwordoutput = "Enter at least 1 special character";
-    error_flag = 1;
-    } else {
-    passwordoutput = "Password contains at least 1 special character";
-    }
-    document.getElementById("pwmessage4").innerHTML = passwordoutput;
-  // Validate length
-  if(passwordinput.length < 8) {
-      passwordoutput = "Enter a minimum of 8 characters";
-      error_flag = 1;
-  } else {
-      passwordoutput = "Password is now 8 or more characters";
-  }
-  document.getElementById("pwmessage5").innerHTML = passwordoutput;
-  }
 
 // Check both passwords match
 function checkrepassword() {
@@ -164,7 +116,10 @@ function setup()
   {
     let firstnameflag;
     let middleflag;
-    /* lastnameflag addr1flag password1flag password2flag;  */
+    let lastnameflag;
+    let addr1flag;
+    let password1flag;
+    let password2flag;
 ("setting up for the first run...");
     document.getElementById('newacct').addEventListener('input', saveInputs);
     checkCookie();
@@ -176,7 +131,7 @@ function checkfirstname()
         x = document.getElementById("firstname").value;
         firstnameflag=1;  // 1 = set error ON
         if( x.length<2) { 
-              document.getElementById("name_message").innerHTML = "Invalid first name... too short.";  
+              document.getElementById("name_message").innerHTML = "First name too short.";  
               error_flag = 1;
         }
         else {
@@ -186,13 +141,184 @@ function checkfirstname()
               setCookie("fname", x , 1);
             }
             else  {
-              document.getElementById("name_message").innerHTML = "Invalid characters in name.";
+              document.getElementById("name_message").innerHTML = "Invalid characters in first name.";
               error_flag = 1;
               }
         }
         checkflags();
     }  
+function checkmiddle()
+    {  
+        x = document.getElementById("middleinit").value;
+        middleflag=0;   // Not required to set error flag off
+        if( x.length>0) { 
+              if (x.match(/[a-zA-Z ]/)) {
+              document.getElementById("name_message").innerHTML = "";  
+            }
+            else  {
+              document.getElementById("name_message").innerHTML = "Invalid characters in middle name.";
+              error_flag = 1;
+              middleflag=1;  // Turn on error flag
+              }
+        } 
+        checkflags();
+    }
+function checklastname()
+    {
+        x = document.getElementById("lastname").value;
+        lastnameflag=1;  // turn on the error since required
+        if( x.length<2) { 
+              document.getElementById("name_message").innerHTML = "Last name too short.";
+              error_flag = 1;  
+        }
+        else {
+            if (x.match(/[a-zA-Z3-5'-]+$/)) {
+              document.getElementById("name_message").innerHTML = "";
+              lastnameflag=0; // turn off error flag  
+            }
+            else  {
+              document.getElementById("name_message").innerHTML = "Invalid characters in last name.";
+              error_flag = 1;
+              }
+        }
+        checkflags();
+    } 
+function passwordentry() 
+    {
+    password1flag=0; // turn OFF password1 flag to start
+    var passwordoutput;
+    var passwordinput = document.getElementById("password1").value;
+    console.log(passwordinput);
+    // Validate lowercase letters
+    if(passwordinput.search(/[a-z]/) < 0 ) {
+      passwordoutput = "Enter At least 1 lower case letter";
+      error_flag = 1;
+      password1flag=1; // Turn on error in password1
+    } else {
+      passwordoutput = "Got at least 1 lower case letter";
+    }
+    document.getElementById("password_message1").innerHTML = passwordoutput;
+    // Validate capital letters
+    if(passwordinput.search(/[A-Z]/)< 0)  {  
+      passwordoutput = "Enter at least 1 upper case letter";
+      error_flag = 1;
+      password1flag=1; // Turn on error in password1
+    } else {
+      passwordoutput = "Got at least 1 upper case letter";
+    }
+    document.getElementById("password_message2").innerHTML = passwordoutput;
+  // Validate numbers
+   if(passwordinput.search(/[0-9]/)<0 ) {   
+    passwordoutput = "EnteraAt least 1 number";
+    error_flag = 1;
+    password1flag=1; // Turn on error in password1
+    } else {
+    passwordoutput = "Got at least 1 number";
+    }
+    document.getElementById("password_message3").innerHTML = passwordoutput;
+    // Validate special chars
+   if(passwordinput.search(/[!\@#\$%&*\-_\\.+\(\)]/)<0 ) {   
+    passwordoutput = "Enter At least 1 special character";
+    error_flag = 1;
+    password1flag=1; // Turn on error in password1
+    } else {
+    passwordoutput = "Got at least 1 special character";
+    }
+    document.getElementById("password_message4").innerHTML = passwordoutput;
+  // Validate length
+  if(passwordinput.length < 8) {
+      passwordoutput = "Enter a Minimum 8 characters";
+      error_flag = 1;
+      password1flag=1; // Turn on error in password1
+  } else {
+      passwordoutput = "Password is now 8 or more characters";
+  }
+  document.getElementById("password_message5").innerHTML = passwordoutput;
+  checkflags();
+  }
 
+function checkaddr1() {
+    x = document.getElementById("addr1").value;
+    addr1flag=1; // addr1 required so turn on error flag
+    console.log(x.value);
+    console.log(x.length);
+    if (x.length < 2 ) {  
+      document.getElementById("addr1_message").innerHTML = "Address needs more characters";  
+      error_flag = 1; 
+      }
+      else { 
+          document.getElementById("addr1_message").innerHTML = ""; 
+          addr1flag=0; 
+      }
+    checkflags();
+}
+function checkaddr2() {
+    x = document.getElementById("addr2").value;
+    addr2flag=0;
+    console.log(x.value);
+    console.log(x.length);
+    if (x.length < 2 ) {  
+      document.getElementById("addr1_message").innerHTML = "Address needs more characters";  
+      error_flag = 1; 
+      }
+      else { 
+          document.getElementById("addr1_message").innerHTML = ""; 
+          addr2flag=0; 
+      }
+    checkflags();
+}
+function checkcity() {
+         if (document.getElementById("city").value.match(/^[ a-zA-Z3-5'-]+$/)) {
+              document.getElementById("city_message").innerHTML = "";  
+            }
+            else  {
+              document.getElementById("city_message").innerHTML = "Invalid characters in city name.";
+              error_flag = 1;
+              }
+}
+function checkstate() {
+        z=document.getElementById("state").value;
+        if(z=="") { 
+              document.getElementById("state_message").innerHTML = "Please choose a state";  
+              error_flag = 1;
+        }
+        else {
+          document.getElementById("state_message").innerHTML = ""; 
+        }
+}
+//    if (document.getElementById("state").length = 0 ) {  error_flag = 1; }
+
+// Check to see if Submit button can be turned on
+function checkflags() {
+    if (firstnameflag+middleflag+lastnameflag+addr1flag+password1flag+password2flag == 0)
+      {
+         document.getElementById("submit").disabled = false;
+      }
+}
+
+function fixphone() {
+    const inputField = document.getElementById('phone');
+    const formattedInputValue = formatPhone(inputField.value);
+    inputField.value = formattedInputValue;
+  }
+
+function formatPhone(value) {
+    if (!value) return value;
+    const phone = value.replace(/[^\d]/g, '');
+    const phoneLength = phone.length;
+  
+    if (phoneLength < 3) return phone;
+  
+    if (phoneLength < 6) {
+      return `(${phone.slice(0, 3)}) ${phone.slice(3)}`;
+    }
+  
+    if (phoneLength < 10) {
+      return `(${phone.slice(0, 3)}) ${phone.slice(3, 6)}-${phone.slice(6)}`;
+    }
+  
+    return `(${phone.slice(0, 3)}) ${phone.slice(3, 6)}-${phone.slice(6, 10)}`;
+  }
 function setCookie(cname, cvalue, exdays) {
         const d = new Date();
         d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -298,3 +424,51 @@ function loadInputs() {
 function eraseLocalStorage() {
   localStorage.clear();
 }
+
+// Check password pattern validity
+function passwordentry() 
+    {
+    passwordoutput;
+    passwordinput = document.getElementById("password1").value;
+    console.log(passwordinput);
+    // Validate lowercase letters
+    if(passwordinput.search(/[a-z]/) < 0 ) {
+      passwordoutput = "Enter at least 1 lowercase letter";
+      error_flag = 1;
+    } else {
+      passwordoutput = "";
+    }
+    document.getElementById("pwmessage1").innerHTML = passwordoutput;
+    // Validate uppercase letters
+    if(passwordinput.search(/[A-Z]/)< 0)  {  
+      passwordoutput = "Enter at least 1 uppercase letter";
+      error_flag = 1;
+    } else {
+      passwordoutput = "";
+    }
+    document.getElementById("pwmessage2").innerHTML = passwordoutput;
+  // Validate numbers
+   if(passwordinput.search(/[0-9]/)<0 ) {   
+    passwordoutput = "Enter at least 1 number";
+    error_flag = 1;
+    } else {
+    passwordoutput = "Password contains at least 1 number";
+    }
+    document.getElementById("pwmessage3").innerHTML = passwordoutput;
+    // Validate special chars
+   if(passwordinput.search(/[!\@#\$%&*\-_\\.+\(\)]/)<0 ) {   
+    passwordoutput = "Enter at least 1 special character";
+    error_flag = 1;
+    } else {
+    passwordoutput = "Password contains at least 1 special character";
+    }
+    document.getElementById("pwmessage4").innerHTML = passwordoutput;
+  // Validate length
+  if(passwordinput.length < 8) {
+      passwordoutput = "Enter a minimum of 8 characters";
+      error_flag = 1;
+  } else {
+      passwordoutput = "Password is now 8 or more characters";
+  }
+  document.getElementById("pwmessage5").innerHTML = passwordoutput;
+  }
