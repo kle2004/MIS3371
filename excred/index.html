@@ -342,7 +342,14 @@
             <input type="button" id="review" value="Click Here to Review" onclick='review1()'>
             <input type="submit" id="submit" value="Click Here to Submit">
             </left>
-
+             
+<dialog id="reviewModal">
+  <h2>Form Review</h2>
+  <div id="outputformdata">
+    </div>
+  <button onclick="document.getElementById('reviewModal').close()">Close</button>
+</dialog>
+             
 <!-- Setting up Google reCAPTCHA with localhost -->
 <div class="g-recaptcha" data-sitekey="6Le9JiksAAAAAK34_1jhxqtJq52Op0LfjfbcGBvc"></div>
 
