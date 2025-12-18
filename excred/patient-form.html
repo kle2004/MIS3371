@@ -1,1 +1,370 @@
+     <!DOCTYPE html>
+<!-- 
+    Program name: patient-form.html
+    Author: Hoan My Le
+    Date created: 2025-11-14
+    Date last edited: 2025-12-06
+    Version: 1.0
+    Description: MIS 3371 Homework 4...
+-->
+ <html>
+    <head>
+        <title>Hoan My's Extra Credit</title>
 
+        <!-- Load external CSS styles -->
+        <link href="./style.css" rel="stylesheet">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body onload="startTime(); setTimeout(refreshPage, 7200000); setTimeout(timeAlert, 3600000); loadstates(); setup()">
+        
+        <div class="header" id="header">
+            <table width="100%">
+                <tr>
+                    <td>
+                        <img 
+                            id="logo" 
+                            src="../Miniimei_Medical.png" 
+                            alt="Miniimei Medical"
+                            style="width:150px;height:150px;"
+                        >
+                    </td>
+                    <td valign="middle" style="font-family: Times New Roman; font-weight: bold; font-size: 30px;">Miniimei Medical</td>
+                    <td valign="bottom" align="right" style="font-family: Times New Roman;">Today's Date: <span id="datetoday"></span>
+                    <br>Military Time: <span id="txt"></span></td>
+                </tr>
+            </table>
+        </div>
+        <hr>
+    
+    </div>
+<iframe src="https://www.bauer.uh.edu/" style="width:100%"></iframe>
+        <div id="body">
+    <form name="newacct" id="newacct" action="./mis3371/thankyou-page.html">
+        <p><i><mark>WARNING: This page will refresh in 2 hours. A reminder will be sent in 1 hour.</mark></i></p>
+
+        <table class="form">
+            <tr class="form">
+                <th class="form" align="left" colspan="3">Create an Account</th>
+                </tr>
+            <tr class="form">
+                <td align="middle">
+                <label for="1stheader" class="border">PATIENT INFORMATION</label>
+            <tr class="form">
+                <td align="left">
+                <label for="firstname">First Name:</label>
+                <input type="text" 
+                        size="10"
+                        maxlength="30"
+                        id="firstname" 
+                        name="firstname" 
+                        placeholder="Barack (req'd)"
+                        required
+                        onblur="checkfirstname()"
+                        >
+                <label for="middleinit">Middle Initial:</label>
+                <input type="text" 
+                        size="1"
+                        maxlength="1"
+                        id="middleinit" 
+                        name="middleinit" 
+                        placeholder="H"
+                        >
+                <label for="lastname">Last Name:</label>
+                <input type="text" 
+                        size="10"
+                        maxlength="30"
+                        id="lastname" 
+                        name="lastname" 
+                        placeholder="Obama (req'd)"
+                        required
+                        >
+                <td><span id="name_message"></span></td>
+            </tr>
+            <tr class="form">
+                <td align="left">
+                <label for="addr1">Address Line 1:</label>
+                <input type="text" 
+                        size="55"
+                        minlength="2"
+                        maxlength="30"
+                        id="addr1" 
+                        name="addr1" 
+                        placeholder="# and Street Address (req'd)"
+                        required
+                        >
+            </tr>
+            <tr class="form">
+                <td align="left">
+                <label for="addr2">Address Line 2:</label>
+                <input type="text" 
+                        size="55"
+                        maxlength="30"
+                        id="addr2" 
+                        name="addr2" 
+                        placeholder="Apt, Unit, Etc..."
+                        >
+            </tr>
+            <tr class="form">
+                <td align="left">
+                <label for="city">City:</label>
+                <input type="text" 
+                        size="16"
+                        maxlength="30"
+                        id="city" 
+                        name="city" 
+                        placeholder="Houston (req'd)"
+                        required
+                        >
+                <label for="states">State:</label>
+                <select name="states" id="states" required>
+                    <span id="states">
+                    <option value="">select one</option>
+            </select>
+            <label for="zip">Zip Code:</label>
+                <input type="text" 
+                        size="7"
+                        maxlength="10"
+                        id="zip" 
+                        name="zip" 
+                        placeholder="Zip+4 (req'd)"
+                        required
+                        >
+            <tr class="form">
+                <td align="left">
+                <label for="birthday">Date of Birth:</label>
+                <input type="date" 
+                        id="birthday" 
+                        name="birthday" 
+                        min="1905-01-01"
+                        required
+                <label for="ssn"> Social Security Number:</label>
+                <input type="password" 
+                        size="15"
+                        maxlength="11"
+                        id="ssn" 
+                        name="ssn" 
+                        placeholder="111-22-3333 (req'd)"
+                        pattern="[0-9]{3}-?[0-9]{2}-?[0-9]{4}"
+                        title="SSN must be 9 digits (XXX-XX-XXXX) with or without hyphens"
+                        required
+                        >
+            </tr>
+            <tr class="form">
+                <td align="left">
+                <label for="phone">Phone #:</label>
+                <input type="text" 
+                        size="13"
+                        maxlength="13"
+                        id="phone" 
+                        name="phone" 
+                        placeholder="(123) 456-7890"
+                <label for="sex"> Gender:</label>
+                    <input type="radio" id="Male" name="sex" value="Male" required>
+                    <label for="Male">Male</label>
+                    <input type="radio" id="Female" name="sex" value="Female">
+                    <label for="Female">Female</label>
+                    <input type="radio" id="Other" name="sex" value="Other">
+                    <label for="Other">Other</label>
+                </td>
+            </tr>
+            <tr class="form">
+                <td align="left">
+                <label for="email">Valid Email Address:</label>
+                <input type="email" 
+                        size="50"
+                        maxlength="40"
+                        id="email" 
+                        name="email" 
+                        placeholder="Enter a valid email address, such as one with @gmail.com"
+                        >
+            </tr>
+            <tr class="form">
+                <td align="middle">
+                    <label for="2ndheader" class="border2">USERNAME & PASSWORD</label>
+            <tr class="form">
+                <td align="left">
+                <label for="username">Desired User ID: </label>
+                <input type="text" 
+                        size="15"
+                        maxlength="20"
+                        id="username" 
+                        name="username" 
+                        placeholder="president1 (req'd)"
+                        required
+                        title="User ID cannot be > 20 characters"
+                        >
+            </tr>
+            <tr class="form">
+                <td align="left">
+                <label for="password">Password: </label>
+                <input type="password" 
+                        size="21"
+                        minlength="8"
+                        maxlength="20"
+                        id="password" 
+                        name="password" 
+                        placeholder="******** (req'd)"
+                        pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()-_+=\/><.,`~]).{8,}"
+                        title="Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 8 to 20 characters"
+                        oninput="passwordentry()"
+                        onfocus="passwordentry()"
+                        onblur="passwordentry()"
+                        required
+                        >
+                <span id="password1_text">
+            </tr>
+            <tr class="form">
+                <td align="left">
+                <label for="repassword">Re-Enter Password: </label>
+                <input type="password" 
+                        size="21"
+                        maxlength="20"
+                        id="repassword" 
+                        name="repassword" 
+                        placeholder="******** (req'd)"
+                        title="Must match the password you inputted above"
+                        onfocus="checkrepassword()"
+                        oninput="checkrepassword()"
+                        onblur="checkrepassword()"
+                        required
+                        >
+                <span id="password2_text">
+
+            <tr class="form">
+                <td align="middle">
+                    <label for="3rdheader" class="border3">PATIENT MEDICAL HISTORY</label>
+            <tr class="form">
+                <td align="left">
+                <label for="question1">Have you ever had any of the following? </label>
+                <br><br>
+                <input type="checkbox" id="choice1" name="choice1">
+                <label for="choice1"> Cardiac arrest</label><br>
+                <input type="checkbox" id="choice2" name="choice2">
+                <label for="choice2"> Drug/alcohol abuse</label><br>
+                <input type="checkbox" id="choice3" name="choice3">
+                <label for="choice3"> Hyperinsulinemia</label><br>
+                <input type="checkbox" id="choice4" name="choice4">
+                <label for="choice4"> Osteoporosis</label><br>
+                <input type="checkbox" id="choice5" name="choice5">
+                <label for="choice5"> Irritable bowel syndrome</label><br><br>
+            <tr class="form">
+                <td align="left">
+                    <label for="question2"> Have you gotten your flu shot vaccination?</label>
+                    <input type="radio" id="Yes" name="question2" value="Yes" required>
+                    <label for="Yes">Yes</label>
+                    <input type="radio" id="No" name="question2" value="No">
+                    <label for="No">No</label>
+                    <input type="radio" id="I Don't Know" name="question2" value="I Don't Know">
+                    <label for="I Don't Know">I Don't Know</label>
+                </td>
+            </tr>
+            <tr class="form">
+                <td align="left">
+                    <label for="question3">On a scale of 1 to 10, how would you rate your health?</label>
+                </td>
+            </tr>
+            <tr class="form">
+                <td align="center"> &nbsp;1
+                    <input type="range" 
+                    class="slider"
+                    id="healthrater" 
+                    name="healthrater"
+                    min="1"
+                    max="10"
+                    list="increments"
+                    > &nbsp;10
+                <br>
+                 <span id="rangedisplay"></span>
+         <datalist id="increments">
+                    <option value="1"></option>
+                    <option value="2"></option>
+                    <option value="3"></option>
+                    <option value="4"></option>
+                    <option value="5"></option>
+                    <option value="6"></option>
+                    <option value="7"></option>
+                    <option value="8"></option>
+                    <option value="9"></option>
+                    <option value="10"></option>
+                </datalist>
+                </td>
+            </tr>
+    <script>
+    slider = document.getElementById("healthrater");
+    output = document.getElementById("rangedisplay");
+    output.innerHTML = slider.value;
+
+    slider.oninput = function() {
+        output.innerHTML = this.value;
+    }
+    </script>
+
+            <tr class="form">
+                <td align="left">
+                <label for="desc">Is there anything else you'd like us to know about your health or condition?</label>
+                </td>
+            </tr>
+            <tr class="form">
+                <td align="left">
+                <textarea 
+                    rows="4" 
+                    cols="70" 
+                    maxlength="600"
+                    id="desc" 
+                    name="desc"
+                    placeholder="Please tell us about your health or condition here" 
+                    >
+                </textarea>
+                </td>
+            </tr>
+        </tr class="form">
+            <tr> 
+                       
+        <td colspan="3">
+            <left>
+            <input type="reset" value="Click Here to Start Over">
+            <input type="button" id="review" value="Click Here to Review" onclick='review1()'>
+            <input type="submit" id="submit" value="Click Here to Submit">
+            </left>
+
+<!-- Setting up Google reCAPTCHA with localhost -->
+<div class="g-recaptcha" data-sitekey="6Le9JiksAAAAAK34_1jhxqtJq52Op0LfjfbcGBvc"></div>
+
+        </td>
+    <tr>
+        </table
+        </div>
+        <div id="footer"
+            <hr><br>
+            <b>Contact Us</b>
+            <p style="font-size: 15px;">We are available for our patients. 
+            <input type="button" id="schedule" value="Please click here to schedule a consultation with us." onclick="goToPage()">
+            <p style="font-size: 15px;">For appointments or other non-emergent inquiries, please call us at 713-743-1010. 
+            </br>
+        </div>
+
+<!-- Show entered form data -->
+<p id="outputformdata"></p>
+
+<!-- Load external JavaScript -->
+<script src="./homework4.js"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        <!-- This creates a LONG date message -->
+        const d = new Date();
+        <!-- This shortens it to the local country date -->
+        let text = d.toLocaleDateString();
+        <!-- Find the element I said is "datetoday" and stick it in to the text -->
+        document.getElementById("datetoday").innerHTML = text;
+        
+    </script>
+
+<br><br><br><br>
+
+<div class="footer">
+  <p>MIS 3371 Copyright &copy; 2025 Hoan My Le</p>
+</div>
+
+    </body>
+</html>
