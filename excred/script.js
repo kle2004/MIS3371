@@ -53,7 +53,7 @@ function review1() {
 }
 
 // Check both passwords match
-function checkrepassword() {
+function checkpassword2() {
     a=document.getElementById("password").value;
     b=document.getElementById("repassword").value;
     if (a==b) 
